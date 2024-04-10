@@ -1,10 +1,8 @@
-/*
-RECREACION DE LAS TORRES DE HAMINOIL
-*/
 #include <iostream>
 #include <string>
 
 using namespace std;
+
 /* Nodo general de una pila
 
     Se componen solamente del dato que almacenan y un apuntador al
@@ -12,8 +10,6 @@ using namespace std;
     new   ->   dato->dato->dato->NULL
     Ultimo en entrar            Primer dato
 */
-
-
 
 class Nodo{
 public:
@@ -26,10 +22,14 @@ public:
 //Solo ocupamos esta notacion
 typedef Nodo *pnodo;
 
-/*
-    Creamos un nodo
+/*  Clase PILA
+ATRIBUTOS
+    Creamos un nodo que sera el ultimo dato ingresado
     El constructor de la pila, al crearlo inicializamos el 
     ultimo nodo para que apunte a NULL
+METODOS 
+    push, empujamos un elemento nuevo a la pila
+    pop, eliminamos el primer elemento de la pila
 */
 
 class Pila{
@@ -39,7 +39,6 @@ public:
 
     void push(int dato);
     int pop();
-    void imprimir();
 };
 
 void Pila::push(int dato){
@@ -60,58 +59,22 @@ int Pila::pop(){
     return dato;
 }
 
-void Pila::imprimir(){
-    pnodo nodo;
-    int dato;
-    
-    if(!ultimo){
-        cout <<" ";
-        return;
-    }
-    nodo = ultimo;
-    while(nodo){
-        dato = nodo->dato;
-        cout << dato << " ";
-        nodo = nodo->siguiente;
-    }
-}
-
-void torres(Pila *torre1,Pila *torre2,Pila *torre3){
-    string s ="------------------\n";
-    cout << s ;
-    torre1->imprimir();
-    cout <<"\t[1]\n"<< s;
-    torre2->imprimir();
-    cout <<"\t[2]\n"<< s ;
-    torre3->imprimir();
-    cout << "\t[3]\n"<<s;
-}
-
 int main(){
-    cout << "\n\n\t*** Torres de haminoil ***\n"<<endl;
-
-    Pila torre1,torre2,torre3;
-    cout << "Con cuantos discos quieres jugar?" << endl;
-    int n;
-    cin >> n;
-    for (int i = n-1; i >= 0; i--) {
-        torre1.push(i+1);
-    }
-    while(true){
-        torres(&torre1,&torre2,&torre3);
-        short int a,b;
-        int aux,aux1;
-        cout << "\n\nDe que torre a q torre quieres mover [1~3]\n";
-        cin >> a >> b;
-        if(a==b){
-            cout << "\nNo puedes elegir la misma torre"<<endl;
-                   
-
-        aux = torre3.pop();
-        if(aux==n){
-            break;
-        }else{
-            torre3.push(aux);
-        }
-    }
+    cout << "\n\n\t*** Pilas ***\n"<<endl;
+    cout << "Demostracion basica del uso de la estructura\n"<<endl;
+    
+    Pila pila;
+    pila.push(5);
+    cout <<"Push 5"<<endl;
+    pila.push(7);
+    cout << "Push 7" << endl;
+    pila.push(9);
+    cout << "Push 9" << endl;
+    cout << "Pop -> "<<pila.pop()<<endl;
+    pila.push(11);
+    cout << "Push 11"<<endl;
+    cout << "Pop ->"<<pila.pop()<<endl;
+    cout << "Pop ->"<<pila.pop()<<endl;
+    cout << "Pop ->"<<pila.pop()<<endl;
+    
 }
