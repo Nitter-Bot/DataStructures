@@ -78,10 +78,10 @@ int main(){
    lista.push(20);
    lista.push(5);
    
-   lista.imprimir();
+   lista.imprimir();// 5->5->10->20
 
    lista.pop(5);
-   lista.imprimir();
+   lista.imprimir();// 5->10->20
 
 }
 
