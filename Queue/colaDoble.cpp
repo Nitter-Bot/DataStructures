@@ -6,8 +6,9 @@ class Nodo{
 public:
    int dato;
    Nodo *siguiente;
-   Nodo(int dato,Nodo *sig=NULL):
-      dato(dato),siguiente(sig){}
+   Nodo *anterior;
+   Nodo(int dato,Nodo *sig=NULL,Nodo *ant=NULL):
+      dato(dato),siguiente(sig),anterior(ant){}
 };
 
 typedef Nodo *pnodo;
@@ -36,22 +37,22 @@ void Dequeu::push_back(int v){
    nuevo = new Nodo(v);
    if(final){
       final->siguiente = nuevo;
-
+      final->anterior  = final;
    }
    final = nuevo;
    if(!inicio){
       inicio=nuevo;
    }
-
 }
 
 void Dequeu::push_front(int v){
-   pnodo nuevo,aux;
+   pnodo nuevo;
 
    nuevo = new Nodo(v);
 
    if(inicio){
-      inicio->siguiente=nuevo;
+      inicio->anterior=nuevo;
+      inicio->siguiente=inicio;
    }
    inicio=nuevo;
    if(!final){
@@ -94,8 +95,11 @@ int Dequeu::pop_back(){
 }
 
 void Dequeu::show1(){
-   while(!empty())
-      cout<<pop_back()<<" ";
+   pnodo aux;
+   aux=inicio;
+   while(aux->siguiente)
+      cout<<aux->dato<<" ";
+      aux=aux->siguiente;
    
    cout<<endl;
 }
@@ -114,12 +118,7 @@ int main(){
    cola.push_back(5);
    cola.push_front(16);
    
-   aux1=cola;
-   aux2=cola;
-   cout<<"Pop back"<<endl;
-   cout<<aux1.pop_back()<<endl;
-   cout<<aux1.pop_back()<<endl;
-   cout<<aux1.pop_back()<<endl;
-   cout<<aux1.pop_back()<<endl;
-   cout<<aux1.pop_back()<<endl;
+   cout << "Pop frente"<<endl;
+   cola.show1();
+   
 }
